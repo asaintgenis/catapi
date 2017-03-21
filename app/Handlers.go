@@ -3,15 +3,14 @@ package app
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 	"net/http"
 
 	"github.com/asaintgenis/catapi/data/cat"
-	"github.com/gorilla/mux"
 )
 
 //Index useless println
 func Index(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
 	fmt.Fprintln(w, "Welcome!")
 }
 
@@ -22,13 +21,17 @@ func CatsIndex(w http.ResponseWriter, r *http.Request) {
 		cat.Cat{ID: "2"},
 		cat.Cat{ID: "3"},
 	}
-	log.Println("Encoding to json....")
-	json.NewEncoder(w).Encode(cats)
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+	if err := json.NewEncoder(w).Encode(cats); err != nil {
+		panic(err)
+	}
 }
 
 //CatShow show a specific required beautiful cat
 func CatShow(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	todoID := vars["catId"]
-	fmt.Fprintln(w, "cat show:", todoID)
+	//vars := mux.Vars(r)
+	//todoID := vars["catId"]
+	w.WriteHeader(http.StatusNotImplemented)
+	fmt.Fprintln(w, "Not yet Implemented !")
 }
