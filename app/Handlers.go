@@ -4,8 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-
-	"github.com/asaintgenis/catapi/data/cat"
 )
 
 //Index useless println
@@ -16,14 +14,10 @@ func Index(w http.ResponseWriter, r *http.Request) {
 
 //CatsIndex send a json back with all the cats database
 func CatsIndex(w http.ResponseWriter, r *http.Request) {
-	cats := cat.Cats{
-		cat.Cat{ID: "1"},
-		cat.Cat{ID: "2"},
-		cat.Cat{ID: "3"},
-	}
+	cat := searchImage()
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
-	if err := json.NewEncoder(w).Encode(cats); err != nil {
+	if err := json.NewEncoder(w).Encode(cat); err != nil {
 		panic(err)
 	}
 }
