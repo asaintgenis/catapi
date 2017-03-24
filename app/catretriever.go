@@ -13,7 +13,7 @@ func searchImage() cat.Cat {
 	fileName := "./ressources/" + strconv.Itoa(randomInt) + ".jpg"
 	catFile, err := os.Open(fileName)
 	if err != nil {
-		panic("open fail")
+		panic(err)
 	}
 	content := make([]byte, 1024)
 	catFile.Read(content)
