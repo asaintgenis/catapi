@@ -1,11 +1,16 @@
 package app
 
-import "github.com/asaintgenis/catapi/data/cat"
-import "os"
+import (
+	"math/rand"
+	"os"
+	"strconv"
+
+	"github.com/asaintgenis/catapi/data/cat"
+)
 
 func searchImage() cat.Cat {
-	//randomInt := rand.Intn(2) + 1
-	fileName := "./ressources/" + "2" + ".jpg"
+	randomInt := rand.Intn(2) + 1
+	fileName := "./ressources/" + strconv.Itoa(randomInt) + ".jpg"
 	catFile, err := os.Open(fileName)
 	if err != nil {
 		panic("open fail")
