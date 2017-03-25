@@ -20,6 +20,9 @@ func CatsIndex(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 		w.WriteHeader(http.StatusOK)
+		if err := json.NewEncoder(w).Encode(cat); err != nil {
+			panic(err)
+		}
 		fmt.Fprintln(w, cat)
 		return
 	}
@@ -39,6 +42,9 @@ func CatShow(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 		w.WriteHeader(http.StatusOK)
+		if err := json.NewEncoder(w).Encode(cat); err != nil {
+			panic(err)
+		}
 		fmt.Fprintln(w, cat)
 		return
 	}
