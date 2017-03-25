@@ -4,6 +4,7 @@ package cat
 type Cat struct {
 	ID  string `json:"id"`
 	Pic []byte `json:"pic"`
+	Err string `json:"error"`
 }
 
 //Cats a slice of beautiful cat
