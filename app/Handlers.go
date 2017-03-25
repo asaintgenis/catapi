@@ -23,7 +23,7 @@ func CatsIndex(w http.ResponseWriter, r *http.Request) {
 		if err := json.NewEncoder(w).Encode(cat); err != nil {
 			panic(err)
 		}
-		fmt.Fprintln(w, cat)
+		fmt.Fprintln(w)
 		return
 	}
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
@@ -31,7 +31,7 @@ func CatsIndex(w http.ResponseWriter, r *http.Request) {
 	if err := json.NewEncoder(w).Encode(cat); err != nil {
 		panic(err)
 	}
-	fmt.Fprintln(w, cat)
+	fmt.Fprintln(w)
 }
 
 //CatShow show a specific required beautiful cat
@@ -45,7 +45,7 @@ func CatShow(w http.ResponseWriter, r *http.Request) {
 		if err := json.NewEncoder(w).Encode(cat); err != nil {
 			panic(err)
 		}
-		fmt.Fprintln(w, cat)
+		fmt.Fprintln(w)
 		return
 	}
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
@@ -53,5 +53,5 @@ func CatShow(w http.ResponseWriter, r *http.Request) {
 	if err := json.NewEncoder(w).Encode(cat); err != nil {
 		panic(err)
 	}
-	fmt.Fprintln(w, cat)
+	fmt.Fprintln(w)
 }
