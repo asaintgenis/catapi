@@ -8,9 +8,12 @@ import (
 	"github.com/asaintgenis/catapi/data/cat"
 )
 
-func searchImage() cat.Cat {
-	randomInt := rand.Intn(2) + 1
-	fileName := "./ressources/" + strconv.Itoa(randomInt) + ".jpg"
+func searchImage(catID string) cat.Cat {
+	if len(catID) == 0 {
+		catID = strconv.Itoa(rand.Intn(2) + 1)
+	}
+
+	fileName := "./ressources/" + catID + ".jpg"
 	catFile, err := os.Open(fileName)
 	if err != nil {
 		panic(err)
