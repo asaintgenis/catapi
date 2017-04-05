@@ -11,15 +11,16 @@
 angular.module('catapi',[])
   .controller('IndexCtrl', function($scope,$http) {
         $scope.catImage = "";
-        console.log("controller is loaded");
+        $scope.catId = "";
 
         $scope.getCat = function(){
-          console.log("get incoming....");
-          $http.get('http://localhost:8080/cats')
+          var url = 'http://localhost:8080/cats';
+          if($scope.catId !== "") {
+            url = url + '/' + $scope.catId;
+          }
+          $http.get(url)
           .then(function(response) {
-              console.log(response.data);
               $scope.catImage = response.data.pic;
-              console.log($scope.catImage);
           });
         };
 
