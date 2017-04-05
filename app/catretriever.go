@@ -1,6 +1,7 @@
 package app
 
 import (
+	"encoding/base64"
 	"math/rand"
 	"os"
 	"strconv"
@@ -16,10 +17,16 @@ func searchImage(catID string) (cat.Cat, error) {
 	fileName := "./ressources/" + catID + ".jpg"
 	catFile, err := os.Open(fileName)
 	if err != nil {
-		return cat.Cat{ID: "", Pic: nil, Err: "can't open file"}, err
+		return cat.Cat{ID: "", Pic: "", Err: "can't open file"}, err
 	}
-	content := make([]byte, 1024)
+
+	defer catFile.Close()
+
+	fInfo, _ := catFile.Stat()
+	var size int64 = fInfo.Size()
+	content := make([]byte, size)
 	catFile.Read(content)
-	cat := cat.Cat{ID: "1", Pic: content}
+	imgBase64Str := base64.StdEncoding.EncodeToString(content)
+	cat := cat.Cat{ID: "1", Pic: imgBase64Str}
 	return cat, nil
 }
